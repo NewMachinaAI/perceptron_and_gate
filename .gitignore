@@ -1,0 +1,22 @@
+# Virtual environments
+env/
+
+# Python bytecode/cache
+__pycache__/
+*.pyc
+
+# Generated model artifacts (recreate via perceptron_and_train.py)
+and_perceptron_model/
+
+# Environment/secret files
+.env
+
+# OS cruft
+.DS_Store
+
+# Editor/IDE
+.idea/
+*.swp
+
+# Logs
+*.log
