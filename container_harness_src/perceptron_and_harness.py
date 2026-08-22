@@ -29,29 +29,34 @@ def main():
     parser = argparse.ArgumentParser(description="CLI harness for the AND-gate Perceptron REST service.")
     parser.add_argument(
         "--url",
-        default="http://127.0.0.1:5000",
-        help="Base URL of the perceptron_and_inference.py service (default: http://127.0.0.1:5000)",
+        default="http://127.0.0.1:5001",
+        help="Base URL of the perceptron_and_inference.py service (default: http://127.0.0.1:5001)",
     )
     args = parser.parse_args()
     base_url = args.url.rstrip("/")
 
-    a = prompt_float("Enter value A: ")
-    b = prompt_float("Enter value B: ")
-
+    print("Press Ctrl+C to quit.\n")
     try:
-        result = call_predict(base_url, a, b)
-    except urllib.error.HTTPError as e:
-        body = json.loads(e.read())
-        print(f"Request failed ({e.code}): {body.get('error', e.reason)}")
-        return
-    except urllib.error.URLError as e:
-        print(f"Could not reach the inference service at {base_url}: {e.reason}")
-        print("Is perceptron_and_inference.py running?")
-        return
+        while True:
+            a = prompt_float("Enter value A: ")
+            b = prompt_float("Enter value B: ")
 
-    label = "TRUE" if result["result"] == 1 else "FALSE"
-    print(f"\nAND({result['a']}, {result['b']}) = {label}")
-    print(f"Confidence: {result['probability'] * 100:.2f}%")
+            try:
+                result = call_predict(base_url, a, b)
+            except urllib.error.HTTPError as e:
+                body = json.loads(e.read())
+                print(f"Request failed ({e.code}): {body.get('error', e.reason)}")
+                continue
+            except urllib.error.URLError as e:
+                print(f"Could not reach the inference service at {base_url}: {e.reason}")
+                print("Is perceptron_and_inference.py running?")
+                continue
+
+            label = "TRUE" if result["result"] == 1 else "FALSE"
+            print(f"\nAND({result['a']}, {result['b']}) = {label}")
+            print(f"Confidence: {result['probability'] * 100:.2f}%\n")
+    except (KeyboardInterrupt, EOFError):
+        print("\nExiting.")
 
 
 if __name__ == "__main__":

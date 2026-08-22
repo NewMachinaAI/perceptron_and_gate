@@ -2,16 +2,16 @@ services:
   train:
     build: .
     container_name: perceptron_train
-    command: ["perceptron_and_train.py"]
+    command: ["container_train_src/perceptron_and_train.py"]
     volumes:
       - model-data:/app/and_perceptron_model
 
   inference:
     build: .
     container_name: perceptron_inference
-    command: ["perceptron_and_inference.py", "--host", "0.0.0.0"]
+    command: ["container_inference_src/perceptron_and_inference.py", "--host", "0.0.0.0"]
     ports:
-      - "5000:5000"
+      - "5001:5001"
     volumes:
       - model-data:/app/and_perceptron_model
     depends_on:
@@ -21,7 +21,7 @@ services:
   harness:
     build: .
     container_name: perceptron_harness
-    command: ["perceptron_and_harness.py", "--url", "http://inference:5000"]
+    command: ["container_harness_src/perceptron_and_harness.py", "--url", "http://inference:5001"]
     stdin_open: true
     tty: true
     profiles: ["tools"]

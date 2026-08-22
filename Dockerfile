@@ -1,11 +1,14 @@
 FROM python:3.11-slim
 
 WORKDIR /app
+ENV PYTHONPATH=/app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY perceptron_and_train.py perceptron_and_inference.py perceptron_and_harness.py ./
+COPY container_train_src/ container_train_src/
+COPY container_inference_src/ container_inference_src/
+COPY container_harness_src/ container_harness_src/
 
 ENTRYPOINT ["python"]
-CMD ["perceptron_and_train.py"]
+CMD ["container_train_src/perceptron_and_train.py"]

@@ -16,7 +16,7 @@ import torch
 from flask import Flask, jsonify, request
 from safetensors.torch import load_file
 
-from perceptron_and_train import Perceptron, OUT_DIR
+from container_train_src.perceptron_and_train import Perceptron, OUT_DIR
 
 app = Flask(__name__)
 model: Perceptron = None
@@ -66,7 +66,7 @@ def main():
         help=f"Directory containing model.safetensors and config.json (default: {OUT_DIR})",
     )
     parser.add_argument("--host", default="127.0.0.1", help="Host to bind (default: 127.0.0.1)")
-    parser.add_argument("--port", type=int, default=5000, help="Port to bind (default: 5000)")
+    parser.add_argument("--port", type=int, default=5001, help="Port to bind (default: 5001)")
     args = parser.parse_args()
 
     global model
