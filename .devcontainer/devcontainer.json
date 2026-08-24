@@ -1,5 +1,5 @@
 {
-  "name": "Basic Python",
+  "name": "Perceptron",
   "build": { "dockerfile": "Dockerfile" },
   "remoteUser": "vscode",
   "customizations": {
