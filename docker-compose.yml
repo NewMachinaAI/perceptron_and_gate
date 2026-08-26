@@ -1,6 +1,7 @@
 services:
   train:
     build: .
+    image: newmachinaai/newmachina_perceptron_train:latest
     container_name: newmachina_perceptron_train
     command: ["container_train_src/perceptron_and_train.py"]
     volumes:
@@ -8,6 +9,7 @@ services:
 
   inference:
     build: .
+    image: newmachinaai/newmachina_perceptron_inference:latest
     container_name: newmachina_perceptron_inference
     command: ["container_inference_src/perceptron_and_inference.py", "--host", "0.0.0.0"]
     ports:
@@ -20,6 +22,7 @@ services:
 
   harness:
     build: .
+    image: newmachinaai/newmachina_perceptron_harness:latest
     container_name: newmachina_perceptron_harness
     command: ["container_harness_src/perceptron_and_harness.py", "--url", "http://inference:5001"]
     stdin_open: true
