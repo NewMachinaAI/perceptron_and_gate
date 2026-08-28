@@ -9,7 +9,7 @@ import torch.nn as nn
 from safetensors.torch import save_file
 
 MODEL_TYPE = "perceptron"
-OUT_DIR = "and_perceptron_model"
+OUT_DIR = "perceptron_and_gate"
 
 
 class Perceptron(nn.Module):

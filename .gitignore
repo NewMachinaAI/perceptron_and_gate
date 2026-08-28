@@ -6,7 +6,7 @@ __pycache__/
 *.pyc
 
 # Generated model artifacts (recreate via perceptron_and_train.py)
-and_perceptron_model/
+perceptron_and_gate/
 
 # Environment/secret files
 .env

@@ -1,5 +1,5 @@
 env/
-and_perceptron_model/
+perceptron_and_gate/
 __pycache__/
 *.pyc
 .git/

@@ -5,7 +5,7 @@ services:
     container_name: newmachina_perceptron_train
     command: ["container_train_src/perceptron_and_train.py"]
     volumes:
-      - model-data:/app/and_perceptron_model
+      - model-data:/app/perceptron_and_gate
 
   inference:
     build: .
@@ -15,7 +15,7 @@ services:
     ports:
       - "5001:5001"
     volumes:
-      - model-data:/app/and_perceptron_model
+      - model-data:/app/perceptron_and_gate
     depends_on:
       train:
         condition: service_completed_successfully
