@@ -1,5 +1,5 @@
 {
-  "name": "Perceptron",
+  "name": "Perceptron_And_Gate_Dev",
   "build": { "dockerfile": "Dockerfile" },
   "remoteUser": "vscode",
   "customizations": {
